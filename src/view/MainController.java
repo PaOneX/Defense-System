@@ -6,6 +6,7 @@ package view;
 
 import controller.Observer;
 import controller.Observerable;
+import java.util.ArrayList;
 
 /**
  *
@@ -38,12 +39,12 @@ public class MainController extends javax.swing.JFrame implements Observer{
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        collectInfoBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         AreaClearCheckBox = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        mainTextField = new javax.swing.JTextField();
+        msgSendBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         optionComboBox = new javax.swing.JComboBox<>();
@@ -54,7 +55,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         jLabel9 = new javax.swing.JLabel();
         jSlider2 = new javax.swing.JSlider();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        mainTxtArea = new javax.swing.JTextArea();
         privateMsgCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -62,7 +63,12 @@ public class MainController extends javax.swing.JFrame implements Observer{
 
         jLabel1.setText("Vehicle :");
 
-        jButton1.setText("Collect Information ");
+        collectInfoBtn.setText("Collect Information ");
+        collectInfoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collectInfoBtnActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Soldier Count:");
 
@@ -75,9 +81,14 @@ public class MainController extends javax.swing.JFrame implements Observer{
             }
         });
 
-        jTextField1.setText("jTextField1");
+        mainTextField.setText("jTextField1");
 
-        jButton4.setText("Send");
+        msgSendBtn.setText("Send");
+        msgSendBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msgSendBtnActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 0));
 
@@ -115,10 +126,15 @@ public class MainController extends javax.swing.JFrame implements Observer{
         jSlider2.setMajorTickSpacing(20);
         jSlider2.setPaintLabels(true);
         jSlider2.setPaintTicks(true);
+        jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider2StateChanged(evt);
+            }
+        });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        mainTxtArea.setColumns(20);
+        mainTxtArea.setRows(5);
+        jScrollPane2.setViewportView(mainTxtArea);
 
         privateMsgCheckBox.setText("send private");
 
@@ -131,9 +147,9 @@ public class MainController extends javax.swing.JFrame implements Observer{
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mainTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(msgSendBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(privateMsgCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -155,7 +171,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(optionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jButton1))
+                                            .addComponent(collectInfoBtn))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel4)
@@ -178,7 +194,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(optionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                        .addComponent(collectInfoBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -202,8 +218,8 @@ public class MainController extends javax.swing.JFrame implements Observer{
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
+                    .addComponent(mainTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msgSendBtn)
                     .addComponent(privateMsgCheckBox))
                 .addGap(12, 12, 12))
         );
@@ -213,54 +229,48 @@ public class MainController extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void AreaClearCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaClearCheckBoxActionPerformed
-        // TODO add your handling code here:
+        // area clear status passing:
+        String status;
         if (AreaClearCheckBox.isSelected()) {
-            
+            status="Area is Cleared";
+        }else{
+            status="Area is Not Cleared";
         }
+        
+        observerable.notifyObservers(status);
     }//GEN-LAST:event_AreaClearCheckBoxActionPerformed
+
+    private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
+        // slider state changed code:
+        observerable.setSliderValue(jSlider2.getValue());
+    }//GEN-LAST:event_jSlider2StateChanged
+
+    private void msgSendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendBtnActionPerformed
+        //Main controller messsage button:
+        if (privateMsgCheckBox.isSelected()) {
+            int options = optionComboBox.getSelectedIndex();
+            ArrayList<Observer> list = observerable.getObserver();
+            list.get(options).setMessage("Main Unit:"+mainTextField.getText());
+            mainTxtArea.setText("");
+            
+        } else {
+            observerable.sendMessage("Main Unit:"+mainTextField.getText());
+            mainTxtArea.setText("");
+        }
+    }//GEN-LAST:event_msgSendBtnActionPerformed
+
+    private void collectInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectInfoBtnActionPerformed
+        // Collect information button:
+//        int options = 
+    }//GEN-LAST:event_collectInfoBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainController().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AreaClearCheckBox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton collectInfoBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -273,9 +283,26 @@ public class MainController extends javax.swing.JFrame implements Observer{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider2;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField mainTextField;
+    private javax.swing.JTextArea mainTxtArea;
+    private javax.swing.JButton msgSendBtn;
     private javax.swing.JComboBox<String> optionComboBox;
     private javax.swing.JCheckBox privateMsgCheckBox;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void updateStatus(String status) {
+    }
+
+    @Override
+    public void setButton(int value) {
+    }
+
+    @Override
+    public void setMessage(String message) {
+    }
+
+    @Override
+    public void privateMessage() {
+    }
 }
