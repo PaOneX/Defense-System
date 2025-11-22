@@ -2,6 +2,7 @@ package view;
 
 import controller.Observer;
 import controller.Observerable;
+import controller.getData;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         initComponents();
         this.observerable = observerable;
         optionComboBox.removeAllItems();
-        optionComboBox.addItem("Select system");
+//        optionComboBox.addItem("Select system");
         optionComboBox.addItem("Helicopter");
         optionComboBox.addItem("Tank");
         optionComboBox.addItem("Submarine");
@@ -47,13 +48,14 @@ public class MainController extends javax.swing.JFrame implements Observer{
         optionComboBox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblCount = new javax.swing.JLabel();
+        lblFuel = new javax.swing.JLabel();
+        lblAmmo = new javax.swing.JLabel();
         jSlider2 = new javax.swing.JSlider();
         jScrollPane2 = new javax.swing.JScrollPane();
         mainTxtArea = new javax.swing.JTextArea();
         privateMsgCheckBox = new javax.swing.JCheckBox();
+        lblPosition = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Main Controller");
@@ -114,11 +116,11 @@ public class MainController extends javax.swing.JFrame implements Observer{
 
         jLabel7.setText("Position:");
 
-        jLabel2.setText("jLabel2");
+        lblCount.setText(" Receiving...");
 
-        jLabel8.setText("jLabel8");
+        lblFuel.setText(" Receiving...");
 
-        jLabel9.setText("jLabel9");
+        lblAmmo.setText(" Receiving...");
 
         jSlider2.setMajorTickSpacing(20);
         jSlider2.setPaintLabels(true);
@@ -134,6 +136,8 @@ public class MainController extends javax.swing.JFrame implements Observer{
         jScrollPane2.setViewportView(mainTxtArea);
 
         privateMsgCheckBox.setText("send private");
+
+        lblPosition.setText(" Receiving...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,16 +157,13 @@ public class MainController extends javax.swing.JFrame implements Observer{
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(70, 70, 70)
-                                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(jLabel6)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel9))
+                                            .addComponent(lblAmmo))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -175,8 +176,12 @@ public class MainController extends javax.swing.JFrame implements Observer{
                                                 .addComponent(jLabel3))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jLabel8))))
+                                                .addComponent(lblCount)
+                                                .addComponent(lblFuel)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblPosition)))
                                     .addGap(115, 115, 115)))
                             .addGap(13, 13, 13)
                             .addComponent(AreaClearCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -194,24 +199,23 @@ public class MainController extends javax.swing.JFrame implements Observer{
                         .addComponent(collectInfoBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(lblCount)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel8))
+                    .addComponent(lblFuel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel9))
+                    .addComponent(lblAmmo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(56, 56, 56))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblPosition))
+                .addGap(16, 16, 16)
+                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -251,14 +255,29 @@ public class MainController extends javax.swing.JFrame implements Observer{
             mainTxtArea.setText("");
             
         } else {
-            observerable.sendMessage("Main Unit:"+mainTextField.getText());
+            observerable.sendMessage("Main Unit: "+mainTextField.getText());
             mainTxtArea.setText("");
         }
     }//GEN-LAST:event_msgSendBtnActionPerformed
 
     private void collectInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectInfoBtnActionPerformed
         // Collect information button:
-//        int options = 
+        int options = optionComboBox.getSelectedIndex();
+        ArrayList<Observer> observerList = observerable.getObserver();
+        
+        int[] array = ((getData)observerList.get(options)).currentData();
+        System.out.println(array[0]+""+array[1]+""+array[2]+""+array[3]);
+        
+        lblCount.setText(" "+array[0]);
+        lblFuel.setText(" "+array[1]);
+        lblAmmo.setText(" "+array[2]);
+        
+        if (array[3]==0) {
+            lblPosition.setText(" Disabled");
+        }else if (array[3]==1) {
+            lblPosition.setText(" Enabled");
+        }
+        
     }//GEN-LAST:event_collectInfoBtnActionPerformed
 
     /**
@@ -269,17 +288,18 @@ public class MainController extends javax.swing.JFrame implements Observer{
     private javax.swing.JCheckBox AreaClearCheckBox;
     private javax.swing.JButton collectInfoBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider2;
+    private javax.swing.JLabel lblAmmo;
+    private javax.swing.JLabel lblCount;
+    private javax.swing.JLabel lblFuel;
+    private javax.swing.JLabel lblPosition;
     private javax.swing.JTextField mainTextField;
     private javax.swing.JTextArea mainTxtArea;
     private javax.swing.JButton msgSendBtn;
@@ -297,6 +317,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
 
     @Override
     public void setMessage(String message) {
+        mainTxtArea.append(message+"\n");
     }
 
     @Override
