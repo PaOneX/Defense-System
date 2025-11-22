@@ -67,7 +67,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
 
         laserBtn.setText("Shoot Laser");
 
-        statusLbl.setText("jLabel2");
+        statusLbl.setText("Awaiting intel...");
 
         jLabel3.setText("Soldier Count:");
 
@@ -242,6 +242,8 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
 
     @Override
     public int[] currentData() {
+
+        return null;
 
     }
 }

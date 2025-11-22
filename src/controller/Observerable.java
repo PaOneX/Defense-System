@@ -45,7 +45,7 @@ public class Observerable implements MainCaller{
         }
     }
     
-    ArrayList<Observer> getObserver(){ //method to return all observers in arraylist
+    public ArrayList<Observer> getObserver(){ //method to return all observers in arraylist
         return observers;
     }
 
