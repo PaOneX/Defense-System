@@ -15,14 +15,26 @@ import java.util.Observable;
  */
 public class Tank extends javax.swing.JFrame implements Observer,getData {
     private Observerable observerable;
+    
+    private int sliderValue;
+    
+    private int soldiers;
+    private int ammo;
+    private int fuel;
+    private int position;
 
     /**
-     * Creates new form Helicopter
+     * Creates new form Tank
      */
     public Tank(Observerable observerable) {
         initComponents();
         this.observerable = observerable;
         setVisible(true);
+        
+        shootBtn.setEnabled(false);
+        rotateShootBtn.setEnabled(false);
+        radarLiveBtn.setEnabled(false);
+        launchMissileBtn.setEnabled(false);
         
     }
 
@@ -36,9 +48,9 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        shootBtn = new javax.swing.JButton();
+        rotateShootBtn = new javax.swing.JButton();
+        radarLiveBtn = new javax.swing.JButton();
         statusLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
@@ -47,10 +59,10 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         jCheckBox1 = new javax.swing.JCheckBox();
         jSlider1 = new javax.swing.JSlider();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textArea = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        launchMissileBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -59,11 +71,11 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
 
         jLabel1.setText("Status:");
 
-        jButton1.setText("Shoot");
+        shootBtn.setText("Shoot");
 
-        jButton2.setText("Rotate shoot");
+        rotateShootBtn.setText("Rotate shoot");
 
-        jButton3.setText("Radar live");
+        radarLiveBtn.setText("Radar live");
 
         statusLbl.setText("Awaiting intel...");
 
@@ -78,15 +90,15 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         jSlider1.setPaintLabels(true);
         jSlider1.setPaintTicks(true);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textArea.setColumns(20);
+        textArea.setRows(5);
+        jScrollPane1.setViewportView(textArea);
 
         jTextField1.setText("jTextField1");
 
         jButton4.setText("Send");
 
-        jButton5.setText("Launch Missile");
+        launchMissileBtn.setText("Launch Missile");
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 0));
 
@@ -137,11 +149,11 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
                             .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(shootBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(rotateShootBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(radarLiveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(launchMissileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jTextField1)
                     .addComponent(jScrollPane1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,13 +176,13 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(shootBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(rotateShootBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(radarLiveBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5))
+                                .addComponent(launchMissileBtn))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(statusLbl)
@@ -203,11 +215,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -218,9 +226,13 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton launchMissileBtn;
+    private javax.swing.JButton radarLiveBtn;
+    private javax.swing.JButton rotateShootBtn;
+    private javax.swing.JButton shootBtn;
     private javax.swing.JLabel statusLbl;
+    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -234,6 +246,8 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
 
     @Override
     public void setMessage(String message) {
+        textArea.append(message + "\n");
+
     }
 
     @Override

@@ -25,6 +25,6 @@ public class Demo {
         main.setVisible(true);
         observerable.addWindow(new Helicopter(observerable));
         observerable.addWindow(new Tank(observerable));
-       // observerable.addWindow(new Submarine(observerable));
+        observerable.addWindow(new Submarine(observerable));
     }
 }

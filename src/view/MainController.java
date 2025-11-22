@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import controller.Observer;
@@ -23,6 +19,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         initComponents();
         this.observerable = observerable;
         optionComboBox.removeAllItems();
+        optionComboBox.addItem("Select system");
         optionComboBox.addItem("Helicopter");
         optionComboBox.addItem("Tank");
         optionComboBox.addItem("Submarine");
