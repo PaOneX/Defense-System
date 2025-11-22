@@ -20,12 +20,11 @@ public class Demo {
     public static void main(String[] args) {
         FlatMacLightLaf.setup();
         Observerable observerable = new Observerable();
+        MainController main = new MainController(observerable);
+        observerable.addWindow(main);
+        main.setVisible(true);
         observerable.addWindow(new Helicopter(observerable));
-        //observerable.addWindow(new Tank(observerable));
+        observerable.addWindow(new Tank(observerable));
        // observerable.addWindow(new Submarine(observerable));
-        
-       // MainController main = new MainController(observerable);
-       // observerable.addWindow(main);
-       // main.setVisible(true);
     }
 }
