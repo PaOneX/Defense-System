@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.Observer;
@@ -9,29 +8,27 @@ import controller.getData;
  *
  * @author Dell
  */
-public class Submarine extends javax.swing.JFrame implements Observer,getData{
-    
+public class Submarine extends javax.swing.JFrame implements Observer, getData {
+
     private Observerable observerable;
-    
+
     private int sliderValue;
-    
+
     private int soldiers;
     private int ammo;
     private int fuel;
     private int position;
-    /**
-     * Creates new form Helicopter
-     */
+
     public Submarine(Observerable observerable) {
         initComponents();
-        this.observerable=observerable;
+        this.observerable = observerable;
         setVisible(true);
-        
+
         btnShoot.setEnabled(false);
         btnSonar.setEnabled(false);
         btnTomahawk.setEnabled(false);
         btnTrident.setEnabled(false);
-        
+
     }
 
     /**
@@ -288,28 +285,28 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         if (positionCheckBox.isSelected()) {
             observerable.setSliderValue(sliderValue);
         }
-        
-        position = positionCheckBox.isSelected()?1:0;
+
+        position = positionCheckBox.isSelected() ? 1 : 0;
     }//GEN-LAST:event_positionCheckBoxActionPerformed
 
     private void soldierCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_soldierCountSpinnerStateChanged
         // TODO add your handling code here:
-        soldiers = (int)soldierCountSpinner.getValue();
+        soldiers = (int) soldierCountSpinner.getValue();
     }//GEN-LAST:event_soldierCountSpinnerStateChanged
 
     private void ammoCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ammoCountSpinnerStateChanged
         // TODO add your handling code here:
-        ammo = (int)ammoCountSpinner.getValue();
+        ammo = (int) ammoCountSpinner.getValue();
     }//GEN-LAST:event_ammoCountSpinnerStateChanged
 
     private void energySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_energySliderStateChanged
         // TODO add your handling code here:
-        lblEnergyVal.setText(""+energySlider.getValue());
+        fuel = (int)energySlider.getValue();
     }//GEN-LAST:event_energySliderStateChanged
 
     private void oxygenSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_oxygenSliderStateChanged
         // TODO add your handling code here:
-        lblOxyenVal.setText(" "+oxygenSlider.getValue());
+        lblOxyenVal.setText(" " + oxygenSlider.getValue());
     }//GEN-LAST:event_oxygenSliderStateChanged
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
@@ -355,20 +352,20 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
     @Override
     public void setButton(int value) {
-          if (positionCheckBox.isSelected()) {
-            if (value>=20) {
+        if (positionCheckBox.isSelected()) {
+            if (value >= 20) {
                 btnSonar.setEnabled(true);
-            }else{
+            } else {
                 btnSonar.setEnabled(false);
             }
-            if (value>=40) {
+            if (value >= 40) {
                 btnTomahawk.setEnabled(true);
-            }else{
+            } else {
                 btnTomahawk.setEnabled(false);
             }
-            if (value>=60) {
+            if (value >= 60) {
                 btnTrident.setEnabled(true);
-            }else{
+            } else {
                 btnTrident.setEnabled(false);
             }
         }
@@ -385,6 +382,8 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
     @Override
     public int[] currentData() {
-        return null;
+        int[] data = {soldiers, fuel, ammo, position};
+
+        return data;
     }
 }

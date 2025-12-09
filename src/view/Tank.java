@@ -82,6 +82,18 @@ public class Tank extends javax.swing.JFrame implements Observer, getData {
 
         jLabel3.setText("Soldier Count:");
 
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner2StateChanged(evt);
+            }
+        });
+
         jLabel4.setText("Ammo Count:");
 
         positionCheckBox.setText("Position");
@@ -90,6 +102,11 @@ public class Tank extends javax.swing.JFrame implements Observer, getData {
         jSlider1.setOrientation(javax.swing.JSlider.VERTICAL);
         jSlider1.setPaintLabels(true);
         jSlider1.setPaintTicks(true);
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
 
         textArea.setColumns(20);
         textArea.setRows(5);
@@ -222,6 +239,24 @@ public class Tank extends javax.swing.JFrame implements Observer, getData {
         jTextField1.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        // TODO add your handling code here:
+        soldiers = (int) jSpinner1.getValue();
+
+    }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        // TODO add your handling code here:
+        ammo = (int) jSpinner1.getValue();
+
+    }//GEN-LAST:event_jSpinner2StateChanged
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        // TODO add your handling code here:
+        fuel = (int) jSlider1.getValue();
+
+    }//GEN-LAST:event_jSlider1StateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -290,6 +325,8 @@ public class Tank extends javax.swing.JFrame implements Observer, getData {
 
     @Override
     public int[] currentData() {
-        return null;
+        int[] data = {soldiers, fuel, ammo, position};
+
+        return data;
     }
 }
