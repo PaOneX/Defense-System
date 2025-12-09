@@ -51,6 +51,9 @@ public class Observerable implements MainCaller{
 
     private void setBtn(int sliderValue) {
         //need to figure out
+        for (Observer observer : observers) {
+            observer.setButton(sliderValue);
+        }
     }
     
 }

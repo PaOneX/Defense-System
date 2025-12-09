@@ -68,7 +68,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         lblOxyenVal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Helicopter");
+        setTitle("Submarine");
 
         jLabel1.setText("Status:");
 
@@ -120,6 +120,11 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         jTextField1.setText("jTextField1");
 
         btnSend.setText("Send");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         btnTrident.setText("Launch Trident-3 Missile");
 
@@ -307,6 +312,12 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         lblOxyenVal.setText(" "+oxygenSlider.getValue());
     }//GEN-LAST:event_oxygenSliderStateChanged
 
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        // TODO add your handling code here:
+        observerable.sendMessage("Submarine" + jTextField1.getText());
+        jTextField1.setText("");
+    }//GEN-LAST:event_btnSendActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +355,23 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
     @Override
     public void setButton(int value) {
+          if (positionCheckBox.isSelected()) {
+            if (value>=20) {
+                btnSonar.setEnabled(true);
+            }else{
+                btnSonar.setEnabled(false);
+            }
+            if (value>=40) {
+                btnTomahawk.setEnabled(true);
+            }else{
+                btnTomahawk.setEnabled(false);
+            }
+            if (value>=60) {
+                btnTrident.setEnabled(true);
+            }else{
+                btnTrident.setEnabled(false);
+            }
+        }
     }
 
     @Override

@@ -243,6 +243,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
         // TODO add your handling code here:
         observerable.sendMessage("Helicopter : "+ msgtextfield.getText());
+        msgtextfield.setText("");
     }//GEN-LAST:event_sendBtnActionPerformed
 
     private void spinnerSoldierStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerSoldierStateChanged

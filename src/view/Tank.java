@@ -13,11 +13,12 @@ import java.util.Observable;
  *
  * @author Dell
  */
-public class Tank extends javax.swing.JFrame implements Observer,getData {
+public class Tank extends javax.swing.JFrame implements Observer, getData {
+
     private Observerable observerable;
-    
+
     private int sliderValue;
-    
+
     private int soldiers;
     private int ammo;
     private int fuel;
@@ -30,12 +31,12 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         initComponents();
         this.observerable = observerable;
         setVisible(true);
-        
+
         shootBtn.setEnabled(false);
         rotateShootBtn.setEnabled(false);
         radarLiveBtn.setEnabled(false);
         launchMissileBtn.setEnabled(false);
-        
+
     }
 
     /**
@@ -56,7 +57,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         jSpinner1 = new javax.swing.JSpinner();
         jSpinner2 = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        positionCheckBox = new javax.swing.JCheckBox();
         jSlider1 = new javax.swing.JSlider();
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
@@ -67,7 +68,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Helicopter");
+        setTitle("Tank");
 
         jLabel1.setText("Status:");
 
@@ -83,7 +84,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
 
         jLabel4.setText("Ammo Count:");
 
-        jCheckBox1.setText("Position");
+        positionCheckBox.setText("Position");
 
         jSlider1.setMajorTickSpacing(20);
         jSlider1.setOrientation(javax.swing.JSlider.VERTICAL);
@@ -97,6 +98,11 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         jTextField1.setText("jTextField1");
 
         jButton4.setText("Send");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         launchMissileBtn.setText("Launch Missile");
 
@@ -146,7 +152,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
                                             .addComponent(jLabel3)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(positionCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(shootBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +202,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
                                     .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCheckBox1)))
+                                .addComponent(positionCheckBox)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -210,13 +216,18 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        observerable.sendMessage("Tank" + jTextField1.getText());
+        jTextField1.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -228,6 +239,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton launchMissileBtn;
+    private javax.swing.JCheckBox positionCheckBox;
     private javax.swing.JButton radarLiveBtn;
     private javax.swing.JButton rotateShootBtn;
     private javax.swing.JButton shootBtn;
@@ -242,6 +254,28 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
 
     @Override
     public void setButton(int value) {
+        if (positionCheckBox.isSelected()) {
+            if (value >= 20) {
+                shootBtn.setEnabled(true);
+            } else {
+                shootBtn.setEnabled(false);
+            }
+            if (value >= 40) {
+                rotateShootBtn.setEnabled(true);
+            } else {
+                rotateShootBtn.setEnabled(false);
+            }
+            if (value >= 60) {
+                radarLiveBtn.setEnabled(true);
+            } else {
+                radarLiveBtn.setEnabled(false);
+            }
+            if (value >= 70) {
+                launchMissileBtn.setEnabled(true);
+            } else {
+                launchMissileBtn.setEnabled(false);
+            }
+        }
     }
 
     @Override
