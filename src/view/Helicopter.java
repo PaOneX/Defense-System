@@ -1,12 +1,10 @@
-
 package view;
 
 import controller.Observer;
 import controller.Observerable;
 import controller.getData;
 
-
-public class Helicopter extends javax.swing.JFrame implements Observer,getData{//since its an observer it should have behaviour , and should be able to pass data to observerable
+public class Helicopter extends javax.swing.JFrame implements Observer, getData {//since its an observer it should have behaviour , and should be able to pass data to observerable
 
     private Observerable observerable;
     private int sliderValue;
@@ -15,6 +13,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
     private int ammo;
     private int fuel;
     private int position;
+
     /**
      * Creates new form Helicopter
      */
@@ -22,7 +21,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         initComponents();
         
         setVisible(true);
-        this.observerable=observerable;
+        this.observerable = observerable;
         
         shootBtn.setEnabled(false);
         missileBtn.setEnabled(false);
@@ -237,12 +236,12 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
             observerable.setSliderValue(sliderValue);
         }
         
-        position = positionCheckBox.isSelected()? 1:0;
+        position = positionCheckBox.isSelected() ? 1 : 0;
     }//GEN-LAST:event_positionCheckBoxActionPerformed
 
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
         // TODO add your handling code here:
-        observerable.sendMessage("Helicopter : "+ msgtextfield.getText());
+        observerable.sendMessage("Helicopter : " + msgtextfield.getText());
         msgtextfield.setText("");
     }//GEN-LAST:event_sendBtnActionPerformed
 
@@ -264,7 +263,6 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -291,42 +289,42 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
     public void updateStatus(String status) {
         statusLbl.setText(status);
     }
-
+    
     @Override
     public void setButton(int value) {
         if (positionCheckBox.isSelected()) {
-            if (value>=20) {
+            if (value >= 20) {
                 shootBtn.setEnabled(true);
-            }else{
+            } else {
                 shootBtn.setEnabled(false);
             }
-            if (value>=40) {
+            if (value >= 40) {
                 missileBtn.setEnabled(true);
-            }else{
+            } else {
                 missileBtn.setEnabled(false);
             }
-            if (value>=60) {
+            if (value >= 60) {
                 laserBtn.setEnabled(true);
-            }else{
+            } else {
                 laserBtn.setEnabled(false);
             }
         }
     }
-
+    
     @Override
     public void setMessage(String message) {
         textArea.append(message + "\n");
     }
-
+    
     @Override
     public void privateMessage() {
     }
-
+    
     @Override
     public int[] currentData() {
-
-        int[] data ={soldiers,fuel,ammo, position};
+        
+        int[] data = {soldiers, fuel, ammo, position};
         return data;
-
+        
     }
 }

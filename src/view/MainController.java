@@ -20,7 +20,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         initComponents();
         this.observerable = observerable;
         optionComboBox.removeAllItems();
-//        optionComboBox.addItem("Select system");
+        optionComboBox.addItem("Select system");
         optionComboBox.addItem("Helicopter");
         optionComboBox.addItem("Tank");
         optionComboBox.addItem("Submarine");
@@ -246,17 +246,17 @@ public class MainController extends javax.swing.JFrame implements Observer{
     }//GEN-LAST:event_jSlider2StateChanged
 
     private void msgSendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendBtnActionPerformed
-        //Main controller messsage button:
+        String message = "Main Unit: " + mainTextField.getText();
+        
         if (privateMsgCheckBox.isSelected()) {
-            int options = optionComboBox.getSelectedIndex();
-            ArrayList<Observer> list = observerable.getObserver();
-            list.get(options).setMessage("Main Unit:"+mainTextField.getText());
-            mainTextField.setText("");
-            
+            int selectedIndex = optionComboBox.getSelectedIndex(); 
+            ArrayList<Observer> observerList = observerable.getObserver(); 
+            observerList.get(selectedIndex).setMessage(message); 
         } else {
-            observerable.sendMessage("Main Unit: "+mainTextField.getText());
-            mainTextField.setText("");
+            observerable.sendMessage(message); 
         }
+        
+        mainTextField.setText("");
     }//GEN-LAST:event_msgSendBtnActionPerformed
 
     private void collectInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectInfoBtnActionPerformed
