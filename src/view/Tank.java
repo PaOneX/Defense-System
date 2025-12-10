@@ -97,6 +97,11 @@ public class Tank extends javax.swing.JFrame implements Observer, getData {
         jLabel4.setText("Ammo Count:");
 
         positionCheckBox.setText("Position");
+        positionCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                positionCheckBoxActionPerformed(evt);
+            }
+        });
 
         jSlider1.setMajorTickSpacing(20);
         jSlider1.setOrientation(javax.swing.JSlider.VERTICAL);
@@ -256,6 +261,15 @@ public class Tank extends javax.swing.JFrame implements Observer, getData {
         fuel = (int) jSlider1.getValue();
 
     }//GEN-LAST:event_jSlider1StateChanged
+
+    private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
+        // TODO add your handling code here:
+         if (positionCheckBox.isSelected()) {
+            observerable.setSliderValue(sliderValue);
+        }
+
+        position = positionCheckBox.isSelected() ? 1 : 0;
+    }//GEN-LAST:event_positionCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
